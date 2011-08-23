@@ -1,1 +1,6 @@
-hello - 
+hello - This source code completes a problem from http://www.itasoftware.com/careers/work-at-ita/hiring-puzzles.html
+, a rebus generator. The needed resources, image files and image.txt file can be found on the ita web site.
+
+My approach to the problem was to find the shortest rebus with lowest score for given sentence.
+
+Written in java using eclipse ide
