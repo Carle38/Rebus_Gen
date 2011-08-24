@@ -1,6 +1,10 @@
-hello - This source code completes a problem from http://www.itasoftware.com/careers/work-at-ita/hiring-puzzles.html
+hello - This source code completes a problem from  http://www.itasoftware.com/careers/work-at-ita/hiring-puzzles.html
 , a rebus generator. The needed resources, image files and image.txt file can be found on the ita web site.
 
-My approach to the problem was to find the shortest rebus with lowest score for given sentence.
+My approach to the problem was to find the shortest rebus with lowest score for a given sentence.
+
+Running this program is easy. Download the rebus.jar file. Then create a folder named "Images". Download the archive of images from http://www.itasoftware.com/careers/work-at-ita/hiring-puzzles.html and put them in your new folder "Images. Then make sure the jar and image folder are together. The double click the executable jar. Enjoy!
 
 Written in java using eclipse ide
+
+
