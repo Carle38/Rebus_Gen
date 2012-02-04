@@ -20,7 +20,11 @@ public class rebusLogic
 	private String[] rebus = {"","",""};
 	private String[] temprebus = {"","",""};
 	private int wordscore, sentencescore = 0, wordcount = 0;
-	
+	/*
+	 * Initializes imageList that will contain image names and associated words
+	 * @param - rg - gui object
+	 * @param - s - Sentence to be constructed into rebus.
+	 */
 	public rebusLogic(rebusGUI rg, String s) 
 	{
 		m_rg = rg;
@@ -67,15 +71,17 @@ public class rebusLogic
 		sentencescore += wordscore;
 		wordcount +=1;
 	}
-	
+	/*
+	 * processes image text file line by line and placed in imageList structure
+	 */
 	private void processImages()
 	{
-		fFile = new File("src/images.txt");
-	    try 
-	    {
+		fFile = new File("Images/images.txt");
+	        try 
+	        {
 			processLineByLine();
 		} 
-	    catch (FileNotFoundException e)
+	        catch (FileNotFoundException e)
 		{
 			e.printStackTrace();
 		}	
@@ -111,9 +117,14 @@ public class rebusLogic
 	    }
 	    imageList.add(imageNames);	    	  	    	   
 	  }
-	
+	/* 
+	 * process sentence
+	 */
 	private void processSentence()
 	{
+		if(sentence.equals(""))
+			return;
+		
 		if(!Character.isLetter(sentence.charAt(sentence.length()-1)))
 		{
 			sentence = sentence.substring(0, sentence.length()-1);
@@ -128,7 +139,9 @@ public class rebusLogic
 	    m_rg.printChar("\n");
 		m_rg.printChar("sentence score = "+sentencescore);
 	}
-	
+	/*
+	 * process word in sentence
+	 */
 	private void processWord(String s)
 	{
 		for(int i = 0; i<3; i++)
@@ -139,7 +152,10 @@ public class rebusLogic
 		wordLookup(s);
 		printRebusWord();	
 	}
-	
+	/*
+	 * trys to match as closely as possible the word with the images associated words
+	 * loops through imageList structure and finds best match based on score.
+	 */
 	private void wordLookup(String word)
 	{
 		int score=100;
@@ -165,27 +181,34 @@ public class rebusLogic
 		rebus[1] = exactMatch(rebus[1]);
 		rebus[2] = exactMatch(rebus[2]);  		
 	}
-	
+	/*
+	 * looks for exact match of word
+	 */
 	private String exactMatch(String word)
 	{
 		String s = ":";
 		for(LinkedList<String> list: imageList)
 		{
-	    	for(String st: list)
-	    	{
-	    		if(list.indexOf(st) != 0)
-	    		{
-	    			 if(word.equalsIgnoreCase(st))
-	    			 {
-	    				 return s.concat(list.get(0));
-	    			 }
-	    			
-	    		}	    	
-	    	}
+                    for(String st: list)
+                    {
+                            if(list.indexOf(st) != 0)
+                            {
+                                     if(word.equalsIgnoreCase(st))
+                                     {
+                                             return s.concat(list.get(0));
+                                     }
+
+                            }	    	
+                    }
 		}
 		return word;	
 	}
-		
+	/*
+	 * constructs the combination of letters that need to be added 
+	 * or subtracted to image to form correct word
+	 * @param - word - original word from sentence
+	 * @param - st - closest match of word to image 
+	 */
 	private void wordConstruct1(String word, String st)
 	{
 		String addString = "", minusString = "";
@@ -283,7 +306,9 @@ public class rebusLogic
 		}		
 	}
 	
-	
+	/*
+	 * calcs score of rebus
+	 */
 	private int scoreCalc(String[] a)
 	{
 		int score = 0;
