@@ -17,7 +17,7 @@ public class rebusGUI extends JFrame implements ActionListener
 	private final int HEIGHT = 400;
 	private JTextPane textPane;
 	private JComboBox combo1;
-	private String choices[] = {
+	private String choices[] = {                                                              // Combo box choices
 			"",
 			"Solve this work here.",
 			"Is your solution optimal?",
@@ -41,7 +41,7 @@ public class rebusGUI extends JFrame implements ActionListener
 		 combo1.setFont(new Font("Serif", Font.BOLD, 16));
 		 combo1.setEditable(true);
 				
-		pane.add(combo1);
+		 pane.add(combo1);
 		 
 		 JButton button1 = new JButton("create");
 		 button1.addActionListener(this);
@@ -67,13 +67,16 @@ public class rebusGUI extends JFrame implements ActionListener
 	{
 		textPane.replaceSelection(s);		
 	}
-	
+	/*
+	 * Prints image from Images folder
+	 * @param - im - string name of image. Used for lookup
+	 */
 	public void printImage(String im)
 	{
 		try 
 		{			   
 		    StyledDocument doc = (StyledDocument)textPane.getDocument();
-		    javax.swing.ImageIcon image = new javax.swing.ImageIcon("Images/"+im);
+		    javax.swing.ImageIcon image = new javax.swing.ImageIcon("Images/"+""+im);
 		    image.setImage(resizeImage(image.getImage()));
 		    Style style = doc.addStyle("StyleName", null);
 		    StyleConstants.setIcon(style, image);
@@ -83,7 +86,10 @@ public class rebusGUI extends JFrame implements ActionListener
 		{
 		}	   
 	}
-		
+	/*
+	 * resizes image so display looks correct
+	 * @param - image - image to be resized	
+	 */
 	 private java.awt.Image resizeImage(java.awt.Image image)
 	 {
 	        int width = (int)(image.getWidth(null) / 2);
